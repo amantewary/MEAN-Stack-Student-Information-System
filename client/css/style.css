@@ -1,0 +1,23 @@
+html,body {
+  font-family: "Mina", sans-serif;
+  background: rgb(238, 238, 238);
+}
+img{
+  width:300px;
+}
+
+#student-info{
+
+  margin-left: 20px;
+}
+
+.card{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.row{
+
+  margin: 0 auto;
+  float: none;
+}

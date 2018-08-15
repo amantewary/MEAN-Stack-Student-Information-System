@@ -1,0 +1,27 @@
+<div class="card text-white bg-dark mb-3" ng-init="getStudent()">
+  <div class="card-header">
+    Student ID: {{student.student_id}}
+  </div>
+  <div class="card-body card-body bg-light mb-3 border-secondary mb-3 text-secondary">
+    <div class="row">
+      <div class="col-md-4">
+        <img ng-src="{{student.image_url}}">
+      </div>
+      <div class="col-md-8">
+        <li class="list-group-item">Name: {{student.name}}</li>
+        <li class="list-group-item">Email: {{student.email}}</li>
+        <li class="list-group-item">Phone: {{student.phone_number}}</li>
+        <li class="list-group-item">Enrolled Program: {{student.program}}</li>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="float-left">
+    <a href="#/students" class="btn btn-primary btn-sm" style="margin: 10px;">Go Back</a>
+</div>
+
+<div class="float-right">
+  <a class="btn btn-success btn-sm" style="margin: 10px;" href="#/students/edit/{{student._id}}">Edit Info</a>
+  
+  <a href="#" class="btn btn-danger btn-sm" style="margin: 10px;" ng-click="deleteStudent(student._id)">Delete</a>
+</div>

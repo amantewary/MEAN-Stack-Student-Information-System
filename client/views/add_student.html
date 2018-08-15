@@ -1,0 +1,85 @@
+<div class="card text-white bg-dark mb-3">
+  <div class="card-header">
+    Add New Student
+  </div>
+  <div class="card-body bg-light mb-3 border-secondary mb-3 text-secondary">
+    <div class="row">
+      <div class="col-md-12">
+        <form ng-submit="addStudent()">
+          <div class="form-group">
+            <label>Student ID</label>
+            <input type="number" class="form-control" ng-model="student.student_id" placeholder="Enter StudentID">
+          </div>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" ng-model="student.name" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" ng-model="student.email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" class="form-control" ng-model="student.phone_number">
+          </div>
+          <div class="form-group">
+            <label>Enrolled Program</label>
+            <select class="form-control" ng-model="student.program">
+              <option value="BACS">BACS</option>
+              <option value="BCS">BCS</option>
+              <option value="MACS">MACS</option>
+              <option value="MCS">MCS</option>
+              <option value="MEC">MEC</option>
+              <option value="MHI">MHI</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Choose Image</label>
+            <input type="file" class="form-control-file" id="imageUpload">
+          </div>
+          <p>Or...</p>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" class="form-control" ng-model="student.image_url" id="imgUrl" placeholder="Enter Image Url">
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <a href="#/students" class="btn btn-danger">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dalcc/upload";
+  var CLOUDINARY_UPLOAD_PRESET = "fzydbibp";
+  var imageUpload = document.getElementById("imageUpload");
+  imageUpload.addEventListener("change", function (event) {
+    var image = event.target.files[0];
+    var formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    axios({
+      url: CLOUDINARY_URL,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: formData
+    }).then(function (res) {
+      console.log(res);
+      secureUrl = res.data.secure_url;
+      var event = new Event('input', {
+        'bubbles': true,
+        'cancelable': true
+      });
+      var imgurl = document.getElementById("imgUrl");
+      imgurl.value = secureUrl;
+      imgurl.dispatchEvent(event);
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+  });
+</script>

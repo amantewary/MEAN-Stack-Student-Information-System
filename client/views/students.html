@@ -1,0 +1,21 @@
+<div class="card text-white bg-dark mb-3" ng-init="getStudents()">
+  <div class="card-header">
+    List of Students
+  </div>
+  <div class="card-body card-body bg-light mb-3 border-secondary mb-3 text-secondary">
+    <div class="row">
+      <div ng-repeat="student in students">
+        <div class="col-md-400">
+          <div class="card text-white bg-dark mb-3" style="width: 14rem; margin-right: 2rem;">
+            <img class="card-img-top" ng-src="{{student.image_url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Student ID: {{student.student_id}}</h5>
+              <p class="card-text">{{student.name}}</p>
+              <a href="#/students/info/{{student._id}}" class="btn btn-light btn-sm">More Info</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
