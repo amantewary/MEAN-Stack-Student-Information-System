@@ -13,14 +13,13 @@ const port = process.env.PORT || 3000;
 //Loading files from client
 app.use(express.static(__dirname+'/client'));
 
-//! 1/2Uncomment This For using HTTPS protocol in localhost (also check at the end of this file)
 // const httpsOptions = {
 //   cert: fs.readFileSync(__dirname+'/ssl/server.crt'),
 //   key: fs.readFileSync(__dirname+'/ssl/server.key')
 // }
 
 //Middleware
-app.use(morgan('combined'));
+app.use(morgan('combined', { stream: logger.stream }));
 app.use(bodyParser.json());
 
 
@@ -84,7 +83,6 @@ app.delete('/api/students/:_id', function(req, res){
   });
 });
 
-//! 2/2 Uncomment This For using HTTPS protocol in localhost
 // https.createServer(httpsOptions, app).listen(port, () => {
 //   console.log('Running on port '+port);
 // });
